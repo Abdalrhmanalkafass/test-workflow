@@ -1,2 +1,1 @@
-s, man, dsbrandh
-c vx,vnxcnv
+s,
