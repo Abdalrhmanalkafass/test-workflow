@@ -14,17 +14,18 @@ jobs:
       - name: Install G++ and Google Test
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ libgtest-dev
+          sudo apt-get install -y g++ cmake libgtest-dev
 
-      - name: Compile and Link Google Test
+      - name: Compile Google Test
         run: |
           sudo cmake -E make_directory /usr/src/googletest/build
           sudo cmake -E chdir /usr/src/googletest/build cmake ..
           sudo cmake --build /usr/src/googletest/build
           sudo cmake --build /usr/src/googletest/build --target install
 
-      - name: Compile calctest.cpp
-        run: g++ -isystem /usr/include/gtest -pthread calctest.cpp -o calctest -lgtest -lgtest_main
+      - name: Compile and Link Project
+        run: |
+          g++ -isystem /usr/include/gtest -I. -pthread calctest.cpp calc.cpp -o calctest -lgtest -lgtest_main
 
       - name: Run Tests
         run: ./calctest
