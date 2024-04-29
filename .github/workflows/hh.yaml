@@ -2,10 +2,7 @@ name: C++ Build and Test
 
 on:
   push:
-    branches:
-      - main
-      - feature/*
-
+  
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
