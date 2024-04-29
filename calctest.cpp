@@ -2,6 +2,7 @@
 // PS C:\Users\Admin\Desktop\New folder>  g++ .\Calc.cpp .\Calctest.cpp -lgtest -lgtest_main -pthread -o main.exe
 // PS C:\Users\Admin\Desktop\New folder> .\main.exe
 #include <iostream>
+using namespace std;
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #ifndef _CALC_H
@@ -29,7 +30,7 @@ TEST(SubFunction, Test_2)
 }
 int main()
 {
-    cout << "dskjjk";
+    cout << "hello";
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
 }
