@@ -1,10 +1,14 @@
-//to debug
-//PS C:\Users\Admin\Desktop\New folder>  g++ .\Calc.cpp .\Calctest.cpp -lgtest -lgtest_main -pthread -o main.exe
-//PS C:\Users\Admin\Desktop\New folder> .\main.exe
+// to debug
+// PS C:\Users\Admin\Desktop\New folder>  g++ .\Calc.cpp .\Calctest.cpp -lgtest -lgtest_main -pthread -o main.exe
+// PS C:\Users\Admin\Desktop\New folder> .\main.exe
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "Calc.hpp"
+#ifndef _CALC_H
+#define _CALC_H
 
+int sum(int x, int y);
+int sub(int x, int y);
+#endif
 TEST(SumFunction, Test_1)
 {
     EXPECT_EQ(5, sum(2, 3));
