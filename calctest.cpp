@@ -31,7 +31,7 @@ TEST(SubFunction, Test_2)
 int main()
 {
     ::testing::InitGoogleTest();
-    cout << "b7bk";
+    cout << "b7bk ya frawlA";
 
     return RUN_ALL_TESTS();
 }
