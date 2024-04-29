@@ -3,28 +3,25 @@ name: C++ CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3 # Updated to use the latest version of checkout action
+      - uses: actions/checkout@v3 # Check out your repository code
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake g++ make libgtest-dev  # Added libgtest-dev
+          sudo apt-get install -y g++ make libgtest-dev  # Install g++, make, and Google Test
 
-      - name: Prepare
+      - name: Compile Google Test
         run: |
-          sudo apt-get install -y cmake g++ make libgtest-dev  # ensure gtest is installed
-          cmake -E make_directory build  # creates a build directory for out-of-source build
-          cmake -E chdir build cmake ..  # configures CMake to use the build directory
+          cd /usr/src/gtest
+          sudo cmake CMakeLists.txt
+          sudo make
+          sudo cp *.a /usr/lib  # Copy libgtest.a and libgtest_main.a to /usr/lib
 
-      - name: Build
+      - name: Compile and Run Tests
         run: |
-          cmake --build build --config Release  # specifies the build type
-
-      - name: Test
-        run: |
-          cmake --build build --target test  # builds the test target
-          ./build/test  # assuming your test executable is named 'test' and is in the 'build' directory
+          g++ -isystem /usr/include/gtest -I. -pthread ./calctest.cpp /usr/lib/libgtest.a /usr/lib/libgtest_main.a -o calctest
+          ./calctest  # Execute the compiled test executable
