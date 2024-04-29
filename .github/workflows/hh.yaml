@@ -23,9 +23,13 @@ jobs:
           sudo cmake --build /usr/src/googletest/build
           sudo cmake --build /usr/src/googletest/build --target install
 
+      - name: List files in the working directory
+        run: ls -al
+
       - name: Compile and Link Project
         run: |
-          g++ -isystem /usr/include/gtest -I. -pthread calctest.cpp calc.cpp -o calctest -lgtest -lgtest_main
+              g++ -isystem /usr/include/gtest -I. -pthread calctest.cpp calc.cpp -o calctest -lgtest -lgtest_main
+
 
       - name: Run Tests
         run: ./calctest
