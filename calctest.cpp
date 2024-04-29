@@ -13,7 +13,7 @@ int sub(int x, int y);
 #endif
 TEST(SumFunction, Test_1)
 {
-    EXPECT_EQ(5, sum(2, 3));
+    EXPECT_EQ(6, sum(2, 3));
 }
 TEST(SumFunction, Test_2)
 {
@@ -31,7 +31,7 @@ TEST(SubFunction, Test_2)
 int main()
 {
     ::testing::InitGoogleTest();
-    cout << "edit";
+    cout << "ml";
 
     return RUN_ALL_TESTS();
 }
