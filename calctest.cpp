@@ -1,6 +1,7 @@
 // to debug
 // PS C:\Users\Admin\Desktop\New folder>  g++ .\Calc.cpp .\Calctest.cpp -lgtest -lgtest_main -pthread -o main.exe
 // PS C:\Users\Admin\Desktop\New folder> .\main.exe
+#include <iostream>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #ifndef _CALC_H
