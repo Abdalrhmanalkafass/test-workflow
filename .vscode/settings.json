@@ -1,0 +1,6 @@
+{
+  "yaml.schemas": {
+    "kubernetes": "*.yaml",
+    "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/Admin/Desktop/New%20folder/.github/workflows/hh.yaml"
+  }
+}

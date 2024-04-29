@@ -1,0 +1,22 @@
+name: C++ Build and Test
+
+on:
+  push:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install G++
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Compile calctest.cpp
+        run: g++ calctest.cpp -o calctest  # Compiles calctest.cpp to an executable named calctest
+
+      - name: Run Tests
+        run: ./calctest  # Executes the calctest executable
+
