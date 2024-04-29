@@ -7,13 +7,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3 # Updated to use the latest version of checkout action
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake g++ make
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ make libgtest-dev  # Added libgtest-dev
+
+      - name: Prepare
+        run: |
+          sudo apt-get install -y cmake g++ make libgtest-dev  # ensure gtest is installed
+          cmake -E make_directory build  # creates a build directory for out-of-source build
+          cmake -E chdir build cmake ..  # configures CMake to use the build directory
 
       - name: Build
-        run: cmake --build build
+        run: |
+          cmake --build build --config Release  # specifies the build type
 
       - name: Test
-        run: .\calctest.cpp
+        run: |
+          cmake --build build --target test  # builds the test target
+          ./build/test  # assuming your test executable is named 'test' and is in the 'build' directory
