@@ -11,12 +11,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install G++
-        run: sudo apt-get update && sudo apt-get install -y g++
+      - name: Install G++ and Google Test
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ libgtest-dev
+
+      - name: Compile and Link Google Test
+        run: |
+          sudo cmake -E make_directory /usr/src/googletest/build
+          sudo cmake -E chdir /usr/src/googletest/build cmake ..
+          sudo cmake --build /usr/src/googletest/build
+          sudo cmake --build /usr/src/googletest/build --target install
 
       - name: Compile calctest.cpp
-        run: g++ calctest.cpp -o calctest  # Compiles calctest.cpp to an executable named calctest
+        run: g++ -isystem /usr/include/gtest -pthread calctest.cpp -o calctest -lgtest -lgtest_main
 
       - name: Run Tests
-        run: ./calctest  # Executes the calctest executable
-
+        run: ./calctest
