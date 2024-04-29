@@ -5,12 +5,7 @@
 using namespace std;
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#ifndef _CALC_H
-#define _CALC_H
-
-int sum(int x, int y);
-int sub(int x, int y);
-#endif
+#include "calc.hpp"
 TEST(SumFunction, Test_1)
 {
     EXPECT_EQ(5, sum(2, 3));
