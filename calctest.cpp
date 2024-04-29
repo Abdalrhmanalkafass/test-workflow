@@ -31,7 +31,7 @@ TEST(SubFunction, Test_2)
 int main()
 {
     ::testing::InitGoogleTest();
-    cout << "hetrtrl";
+    cout << "edit";
 
     return RUN_ALL_TESTS();
 }
