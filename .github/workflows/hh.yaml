@@ -1,0 +1,48 @@
+name: C++ Build and Test
+
+on:
+  push:  # This will now trigger on a push to any branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install G++ and Google Test
+        run: sudo apt-get update && sudo apt-get install -y g++ cmake libgtest-dev
+
+      - name: Compile Google Test
+        run: |
+          sudo cmake -E make_directory /usr/src/googletest/build
+          sudo cmake -E chdir /usr/src/googletest/build cmake ..
+          sudo cmake --build /usr/src/googletest/build
+          sudo cmake --build /usr/src/googletest/build --target install
+
+      - name: List files in the working directory
+        run: ls -al
+
+      - name: Compile and Link Project
+        run: g++ -isystem /usr/include/gtest -I. -pthread calctest.cpp calc.cpp -o calctest -lgtest -lgtest_main
+
+      - name: Run Tests
+        run: ./calctest
+
+      - name: Conditional Step
+        if: success()  # Only runs if all previous steps were successful
+        run: echo "Tests passed, proceed with next steps"
+
+  deploy:
+    needs: build-and-test
+    if: needs.build-and-test.result == 'success'  # This job runs only if the build-and-test job succeeds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production
+        run: |
+          echo "Deploying to production environment..."
+          # Here you add the actual commands needed for your deployment
+          # For example, if deploying a web application to a hosting server:
+          # scp ./output/myapp user@production-server:/path/to/deployment
+          # ssh user@production-server 'sudo systemctl restart myapp'

@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "/.github/workflows/*",
+    "https://json.schemastore.org/kustomization": "/k8s/kustomize/*",
+    "https://kubernetesjsonschema.dev/v1.22.4-standalone-strict/all.json": "/k8s/*"
+},
+
+}
