@@ -33,6 +33,6 @@ TEST(SubFunction, Test_2)
 int main()
 {
     ::testing::InitGoogleTest();
-    cout << "b7bk ya farwala ";
+    cout << "b7bk ya Sala ";
     return RUN_ALL_TESTS();
 }
