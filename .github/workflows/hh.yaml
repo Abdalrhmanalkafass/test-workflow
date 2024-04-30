@@ -1,6 +1,7 @@
 name: C++ Build and Test
 
-on: push  # This will now trigger on a push to any branch
+on:
+  push:  # This will now trigger on a push to any branch
 
 jobs:
   build-and-test:
@@ -39,5 +40,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Production
-        run: echo "Deploying to production environment..."
-        # Add real deployment commands here
+        run: |
+          echo "Deploying to production environment..."
+          # Here you add the actual commands needed for your deployment
+          # For example, if deploying a web application to a hosting server:
+          # scp ./output/myapp user@production-server:/path/to/deployment
+          # ssh user@production-server 'sudo systemctl restart myapp'
