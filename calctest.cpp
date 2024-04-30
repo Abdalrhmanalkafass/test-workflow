@@ -5,10 +5,17 @@
 using namespace std;
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "calc.hpp"
+
+#ifndef _CALC_H
+#define _CALC_H
+
+int sum(int x, int y);
+int sub(int x, int y);
+#endif
+
 TEST(SumFunction, Test_1)
 {
-    EXPECT_EQ(5, sum(2, 3));
+    EXPECT_EQ(6, sum(2, 3));
 }
 TEST(SumFunction, Test_2)
 {
@@ -26,7 +33,7 @@ TEST(SubFunction, Test_2)
 int main()
 {
     ::testing::InitGoogleTest();
-    cout << "b7bk ya fra5555wlA";
+    cout << "b7bk ya fra5555wlty";
 
     return RUN_ALL_TESTS();
 }

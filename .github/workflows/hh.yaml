@@ -1,8 +1,7 @@
 name: C++ Build and Test
 
-on:
-  push:
-  
+on: push  # This will now trigger on a push to any branch
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -30,17 +29,15 @@ jobs:
       - name: Run Tests
         run: ./calctest
 
-      # Optional: Conditional step based on tests result
       - name: Conditional Step
         if: success()  # Only runs if all previous steps were successful
         run: echo "Tests passed, proceed with next steps"
 
-  # This could be any conditional action, like notifying a deployment system
-  notify:
+  deploy:
     needs: build-and-test
-    if: needs.build-and-test.result == 'success'
+    if: needs.build-and-test.result == 'success'  # This job runs only if the build-and-test job succeeds
     runs-on: ubuntu-latest
     steps:
-      - name: Notify Success
-        run: echo "Tests passed, notify or trigger deployment"
-
+      - name: Deploy to Production
+        run: echo "Deploying to production environment..."
+        # Add real deployment commands here
