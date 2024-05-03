@@ -15,7 +15,7 @@ int sub(int x, int y);
 
 TEST(SumFunction, Test_1)
 {
-    EXPECT_EQ(5, sum(2, 3));
+    EXPECT_EQ(6, sum(2, 3));
 }
 TEST(SumFunction, Test_2)
 {
